@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
     <title>Unity Web Player | Bauforum_WEB</title>
     <style>
       /* General body styling */
@@ -11,9 +12,10 @@
         padding: 0;
         border: 0;
         margin: 0;
-        background-color: #123456; /* Page background color */
+        background-color: #282828; /* Page background color */
         font-family: Arial, sans-serif; /* Clean font style */
         color: #ffffff; /* Text color */
+        overflow: hidden; /* Prevent scrolling */
       }
 
       /* Container for the WebGL content and text */
@@ -26,7 +28,7 @@
       h1 {
         font-size: 24px;
         margin: 0 0 10px; /* Adjust spacing around the title */
-        color: #FFD700; /* Gold-colored header text */
+        color: #ab001a; /* Red-colored header text */
       }
 
       p {
@@ -41,6 +43,14 @@
         border: 5px solid #FFD700; /* Add a border for a polished look */
         border-radius: 10px; /* Rounded corners */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+      }
+
+      /* Ensure full-screen on mobile */
+      @media (max-width: 768px) {
+        #unity-canvas {
+          width: 100vw; /* Full width of viewport */
+          height: 100vh; /* Full height of viewport */
+        }
       }
     </style>
   </head>
@@ -67,8 +77,11 @@
         canvas.style.width = "100%";
         canvas.style.height = "100%";
         canvas.style.position = "fixed";
+        canvas.style.top = "0"; // Make sure it's aligned to the top
+        canvas.style.left = "0"; // Align it to the left
 
         document.body.style.textAlign = "left";
+        document.body.style.margin = "0"; // Remove margin from the body
       }
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
